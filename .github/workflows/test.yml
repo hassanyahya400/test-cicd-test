@@ -15,7 +15,7 @@ jobs:
     - name: Install Node
       uses: actions/setup-node@v1
       with: 
-        node-version: '12.x'
+        node-version: '14.x'
     
     # Install the newman command line utility and also install the html extra reporter
     - name: Install newman
@@ -32,8 +32,9 @@ jobs:
     - name: Run POSTMAN collection
       run: |
         newman --version
-        newman run ./test-cicd-test.postman_collection.json -e ./hassan-f4b-staging.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
-        newman --version
+        COLLECTION_FILE=./test-cicd-test.postman_collection.json
+        ENVIRONMENT_FILE=./hassan-f4b-staging.postman_environment.json
+        newman run "$COLLECTION_FILE" -e "$ENVIRONMENT_FILE" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
         
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details

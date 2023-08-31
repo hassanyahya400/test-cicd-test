@@ -32,8 +32,7 @@ jobs:
     - name: Run POSTMAN collection
       run: |
         newman --version
-        newman run ./test-cicd-test.postman_collection.json -e ./hassan-f4b-staging.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
-
+        newman run ./test-cicd-test.postman_collection.json
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
       uses: actions/upload-artifact@v2

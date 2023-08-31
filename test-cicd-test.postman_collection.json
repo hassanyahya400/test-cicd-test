@@ -59,7 +59,7 @@
 					"response": []
 				},
 				{
-					"name": "Refunds v2",
+					"name": "Refund v2",
 					"event": [
 						{
 							"listen": "test",
@@ -114,7 +114,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(400);",
+							"    pm.response.to.have.status(401);",
 							"});"
 						],
 						"type": "text/javascript"

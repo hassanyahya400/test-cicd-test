@@ -59,7 +59,7 @@
 					"response": []
 				},
 				{
-					"name": "Refund v2",
+					"name": "Refunds v2",
 					"event": [
 						{
 							"listen": "test",

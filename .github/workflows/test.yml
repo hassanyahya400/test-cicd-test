@@ -31,6 +31,7 @@ jobs:
     # Run the POSTMAN collection
     - name: Run POSTMAN collection
       run: |
+        set -x
         newman --version
         COLLECTION_FILE=./test-cicd-test.postman_collection.json
         ENVIRONMENT_FILE=./hassan-f4b-staging.postman_environment.json

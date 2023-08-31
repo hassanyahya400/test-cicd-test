@@ -25,7 +25,7 @@ jobs:
 
     # Make directory to upload the test results
     - name: Make Directory for results
-      run: mkdir -p testResults
+      run: mkdir -p test-reports
 
 
     # Run the POSTMAN collection
@@ -35,11 +35,16 @@ jobs:
         newman --version
         COLLECTION_FILE=./test-cicd-test.postman_collection.json
         ENVIRONMENT_FILE=./hassan-f4b-staging.postman_environment.json
-        newman run "$COLLECTION_FILE" -e "$ENVIRONMENT_FILE" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+        newman run "$COLLECTION_FILE" -e "$ENVIRONMENT_FILE" -r htmlextra --reporter-htmlextra-export test-reports/htmlreport.html --reporter-htmlextra-darkTheme  > test-reports/runreport1.html
         
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
       uses: actions/upload-artifact@v2
       with: 
-       name: RunReports
-       path: testResults
+       name: Test Reports
+       path: test-reports
+
+    # Remove any temporary files or artifacts if needed
+    - name: Cleanup
+      run: |
+      # Remove any temporary files or artifacts if needed

@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "c13bb34e-a6c8-48d0-b977-6a18dc3fe807",
+		"name": "test-cicd-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23178102",
+		"_collection_link": "https://galactic-flare-526987.postman.co/workspace/Collections-and-Checkout~ad262421-3db7-4e77-a4cb-da1c4cadd642/collection/23178102-c13bb34e-a6c8-48d0-b977-6a18dc3fe807?action=share&source=collection_link&creator=23178102"
+	},
+	"item": [
+		{
+			"name": "Refunds",
+			"item": [
+				{
+					"name": "Refund v3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer FLWSECK-57d597ab2465b49e794b25bca56b34d7-X",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v3/transactions/1680627784966-739766/refund",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v3",
+								"transactions",
+								"1680627784966-739766",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refund v2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ref\": \"\",\n    \"seckey\": \"{{secret_key}}\",\n    \"amount\": 200\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/gpx/merchant/transactions/refund",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpx",
+								"merchant",
+								"transactions",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fetch Transactions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "flw-auth-token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "v3-xapp-id",
+						"value": "1"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v2/db-transactions?is_v3=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"db-transactions"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2023-03-04+00:00:00",
+							"disabled": true
+						},
+						{
+							"key": "to",
+							"value": "2023-04-03+23:59:59",
+							"disabled": true
+						},
+						{
+							"key": "transaction_type",
+							"value": "cash-offline",
+							"disabled": true
+						},
+						{
+							"key": "is_v3",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions Aggregate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "https://koporke.herokuapp.com"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "flw-auth-token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "v3-xapp-id",
+						"value": "1"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v2/aggregate-cash-transactions?currency=USD",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"aggregate-cash-transactions"
+					],
+					"query": [
+						{
+							"key": "currency",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Cash Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "https://koporke.herokuapp.com"
+					},
+					{
+						"key": "Referer",
+						"value": "https://koporke.herokuapp.com/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "flw-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzAyMDIsInYiOiIzLjAiLCJpYXQiOjE2ODA1MzcxMTYsImV4cCI6MTY4MDg4MjcxNn0.2krwzhnWqWTAHQywuYW6X-CA5sEgMPJmf0Rxi9nP_tY",
+						"disabled": true
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "v3-xapp-id",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PBFPubKey\": \"{{public_key}}\",\n    \"amount\": 100,\n    \"currency\": \"USD\",\n    \"customer_phone\": \"+2709876543456\",\n    \"customer_email\": \"secnd.dollar@ca.za\",\n    \"customer_fullname\": \"Second Dollar\",\n    \"meta\": []\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/flwv3-pug/getpaidx/api/gbp/cash/offline/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"flwv3-pug",
+						"getpaidx",
+						"api",
+						"gbp",
+						"cash",
+						"offline",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{secret_key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "secret_key",
+			"value": "FLWSECK-57d597ab2465b49e794b25bca56b34d7-X",
+			"type": "string"
+		}
+	]
+}
